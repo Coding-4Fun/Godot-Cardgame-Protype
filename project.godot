@@ -18,6 +18,33 @@ _global_script_class_icons={
 config/name="Godot-Cardgame-Prototype"
 config/icon="res://icon.png"
 
+[debug]
+
+settings/stdout/print_fps=true
+
+[display]
+
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
+
+[logging]
+
+file_logging/enable_file_logging=true
+file_logging/log_path="res://logs/godot.log"
+
+[node]
+
+name_num_separator=3
+
+[physics]
+
+2d/thread_model=2
+
 [rendering]
 
+threads/thread_model=2
 environment/default_environment="res://default_env.tres"
+
+[world]
+
+2d/cell_size=64
