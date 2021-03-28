@@ -1,0 +1,34 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/sq_ok.png-f18c251f039d7683e2e77874c9701686.stex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://Images/Background/sq_ok.png"
+dest_files=[ "res://.import/sq_ok.png-f18c251f039d7683e2e77874c9701686.stex" ]
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=true
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+stream=false
+size_limit=0
+detect_3d=true
+svg/scale=1.0
