@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/irelands_coast.ogg-c0b5e39293b14daacc062ea2bb9af6b0.oggstr"
+
+[deps]
+
+source_file="res://Audio/Music/Ambient/irelands_coast.ogg"
+dest_files=[ "res://.import/irelands_coast.ogg-c0b5e39293b14daacc062ea2bb9af6b0.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

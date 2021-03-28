@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/flippage.ogg-d0edb6bb4d9e9d73b9065cd2640486f8.oggstr"
+
+[deps]
+
+source_file="res://Audio/Sounds/flippage.ogg"
+dest_files=[ "res://.import/flippage.ogg-d0edb6bb4d9e9d73b9065cd2640486f8.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

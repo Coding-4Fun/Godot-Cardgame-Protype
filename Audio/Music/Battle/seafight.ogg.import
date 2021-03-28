@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/seafight.ogg-ea2b76bd5ddce31aeecf592d0d2671a8.oggstr"
+
+[deps]
+
+source_file="res://Audio/Music/Battle/seafight.ogg"
+dest_files=[ "res://.import/seafight.ogg-ea2b76bd5ddce31aeecf592d0d2671a8.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

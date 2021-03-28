@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/stonemason.ogg-7d5a85a896a170623cba137b965176f3.oggstr"
+
+[deps]
+
+source_file="res://Audio/Sounds/stonemason.ogg"
+dest_files=[ "res://.import/stonemason.ogg-7d5a85a896a170623cba137b965176f3.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

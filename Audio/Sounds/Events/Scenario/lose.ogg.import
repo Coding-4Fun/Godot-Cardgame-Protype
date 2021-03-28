@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/lose.ogg-7ab730fd14cd216f5759ca034643b8ba.oggstr"
+
+[deps]
+
+source_file="res://Audio/Sounds/Events/Scenario/lose.ogg"
+dest_files=[ "res://.import/lose.ogg-7ab730fd14cd216f5759ca034643b8ba.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

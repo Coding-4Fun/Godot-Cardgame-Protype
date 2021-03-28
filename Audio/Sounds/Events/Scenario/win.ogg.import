@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/win.ogg-1944318c84005181a4c5f5d0a75a8bb6.oggstr"
+
+[deps]
+
+source_file="res://Audio/Sounds/Events/Scenario/win.ogg"
+dest_files=[ "res://.import/win.ogg-1944318c84005181a4c5f5d0a75a8bb6.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

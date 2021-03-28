@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/new_era.ogg-9b9e8e4659276f7039f787668ff810d9.oggstr"
+
+[deps]
+
+source_file="res://Audio/Sounds/Events/new_era.ogg"
+dest_files=[ "res://.import/new_era.ogg-9b9e8e4659276f7039f787668ff810d9.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

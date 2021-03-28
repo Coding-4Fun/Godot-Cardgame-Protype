@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/2.ogg-255002d1120ca692a3161ce398cbfe16.oggstr"
+
+[deps]
+
+source_file="res://Audio/Voice/fr/0/NewWorld/2.ogg"
+dest_files=[ "res://.import/2.ogg-255002d1120ca692a3161ce398cbfe16.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

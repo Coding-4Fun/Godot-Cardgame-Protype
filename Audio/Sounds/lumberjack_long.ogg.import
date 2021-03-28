@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/lumberjack_long.ogg-baec7631fe83ecff28b85cab33c6aa51.oggstr"
+
+[deps]
+
+source_file="res://Audio/Sounds/lumberjack_long.ogg"
+dest_files=[ "res://.import/lumberjack_long.ogg-baec7631fe83ecff28b85cab33c6aa51.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
