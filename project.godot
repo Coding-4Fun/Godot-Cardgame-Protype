@@ -16,6 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Godot-Cardgame-Prototype"
+run/main_scene="res://MainMenu/MainMenuUI.tscn"
 config/icon="res://icon.png"
 
 [debug]
