@@ -1,25 +1,38 @@
 extends Node
 
-var save_data = {}
-const SAVEGAME = "user://Savegame.json"
+var config_data = {}
+const GAMECONFIGFILE = "user://config.json"
+const CONFIGDATA_DEFAULT = {
+	"Player_name": "Unnamed",
+	"Network": {
+		"HostIPAdress": "127.0.0.1",
+		"HostGamePort": "32023",
+		},
+	"Audio": {
+		"MasterVolume": 100,
+		"SfxVolume": 100,
+		"MusicVolume": 100
+		}
+	}
 
 func _ready() -> void:
-	save_data = get_data()
+	config_data = get_data()
 
 func get_data() -> JSONParseResult:
 	var file = File.new()
-	if not file.file_exists(SAVEGAME):
-		save_data = {"Player_name": "Unnamed"}
+	if not file.file_exists(GAMECONFIGFILE):
+		config_data = CONFIGDATA_DEFAULT
 		save_game()
-	file.open(SAVEGAME, File.READ)
+	file.open(GAMECONFIGFILE, File.READ)
 	var content = file.get_as_text()
 	var data = parse_json(content)
-	save_data = data
+	config_data = data
 	file.close()
 	return(data)
 
 
 func save_game():
-	var save_game = File.new()
-	save_game.open(SAVEGAME, File.WRITE)
-	save_game.store_line(to_json(save_data))
+	var config = File.new()
+	config.open(GAMECONFIGFILE, File.WRITE)
+	config.store_line(to_json(config_data))
+	config.close()
