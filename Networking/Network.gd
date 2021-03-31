@@ -49,8 +49,8 @@ extends Node
 # Eine Vorlage für neue Scripte
 #-------------------------------------------------------------------------------
 # Signals
-signal player_disconnected
-signal server_disconnected
+#signal player_disconnected
+#signal server_disconnected
 #-------------------------------------------------------------------------------
 # enums
 #-------------------------------------------------------------------------------
@@ -66,6 +66,7 @@ var local_player_id : int = 0 setget set_local_player_id
 #-------------------------------------------------------------------------------
 # onready variables
 #onready var myVar: string
+
 #-------------------------------------------------------------------------------
 # optional built-in virtual _init method
 #-------------------------------------------------------------------------------
