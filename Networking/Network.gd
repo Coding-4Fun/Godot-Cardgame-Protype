@@ -72,8 +72,8 @@ var local_player_id : int = 0 setget set_local_player_id
 # built-in virtual _ready method
 func _ready() -> void:
 	var err = {}
-	err["disconnected"] = get_tree().connect("network_peer_disconnected", self, "_on_player_disconnected") > 0
-	err["connected"] = get_tree().connect("network_peer_connected", self, "_on_player_connected") > 0
+	err["playerdisconnected"] = get_tree().connect("network_peer_disconnected", self, "_on_player_disconnected") > 0
+	err["playerconnected"] = get_tree().connect("network_peer_connected", self, "_on_player_connected") > 0
 
 	if not err.values().empty():
 		for e in err.values():
@@ -91,10 +91,13 @@ func create_server() -> void:
 	print("I am " + str(local_player_id))
 
 
-
 func connect_to_server() -> void:
 	var peer = NetworkedMultiplayerENet.new()
-	get_tree().connect("connected_to_server", self, "_connected_to_server")
+	var err = {}
+	err["playerdisconnected"] = get_tree().connect("connected_to_server", self, "_connected_to_server") > 0
+	if not err.values().empty():
+		for e in err.values():
+			print(str(e))
 	peer.create_client(DEFAULT_IP, DEFAULT_PORT)
 	get_tree().set_network_peer(peer)
 	set_local_player_id(get_tree().get_network_unique_id())
@@ -107,14 +110,11 @@ func _connected_to_server() -> void:
 func _on_player_connected(id:int) -> void:
 	if not get_tree().is_network_server ():
 		print(str(id) + " hat sich verbunden")
-	pass
 #-------------------------------------------------------------------------------
 # remote RPC methods
 remote func _send_player_info(id: int) -> void:
 	if get_tree().is_network_server ():
 		print(str(id) + " ID ist jetzt verbunden")
-
-
 #-------------------------------------------------------------------------------
 # Getter und Setter
 func set_local_player_id(id: int) -> void :
