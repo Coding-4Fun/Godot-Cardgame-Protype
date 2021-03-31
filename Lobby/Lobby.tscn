@@ -70,6 +70,8 @@ margin_bottom = 44.0
 rect_min_size = Vector2( 320, 0 )
 text = "Player"
 align = 1
+placeholder_text = "Select Your Name"
+placeholder_alpha = 0.492
 
 [node name="IPLabel" type="Label" parent="VBoxContainer/CenterContainer/GridContainer"]
 margin_top = 57.0
@@ -86,6 +88,7 @@ margin_bottom = 96.0
 rect_min_size = Vector2( 320, 0 )
 text = "127.0.0.1"
 align = 1
+placeholder_text = "Host Ip Adress "
 
 [node name="PortLabel" type="Label" parent="VBoxContainer/CenterContainer/GridContainer"]
 margin_top = 109.0
@@ -102,6 +105,7 @@ margin_bottom = 148.0
 rect_min_size = Vector2( 320, 0 )
 text = "32032"
 align = 1
+placeholder_text = "Server Game Port"
 
 [node name="MaxPlayersLabel" type="Label" parent="VBoxContainer/CenterContainer/GridContainer"]
 margin_top = 161.0
@@ -140,6 +144,6 @@ text = "Join Game"
 [connection signal="text_entered" from="VBoxContainer/CenterContainer/GridContainer/NameTextbox" to="." method="_on_NameTextbox_text_entered"]
 [connection signal="text_entered" from="VBoxContainer/CenterContainer/GridContainer/IPTextbox" to="." method="_on_IPTextbox_text_entered"]
 [connection signal="text_entered" from="VBoxContainer/CenterContainer/GridContainer/PortTextbox" to="." method="_on_PortTextbox_text_entered"]
-[connection signal="text_entered" from="VBoxContainer/CenterContainer/GridContainer/MaxPlayersTextbox" to="." method="_on_NameTextbox_text_entered"]
+[connection signal="text_entered" from="VBoxContainer/CenterContainer/GridContainer/MaxPlayersTextbox" to="." method="_on_MaxPlayersTextbox_text_entered"]
 [connection signal="pressed" from="VBoxContainer/CenterContainer/GridContainer/HostButton" to="." method="_on_HostButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/CenterContainer/GridContainer/JoinButton" to="." method="_on_JoinButton_pressed"]
