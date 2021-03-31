@@ -43,7 +43,7 @@ align = 1
 [node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]
 margin_top = 38.0
 margin_right = 1024.0
-margin_bottom = 234.0
+margin_bottom = 286.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -51,7 +51,7 @@ __meta__ = {
 [node name="GridContainer" type="GridContainer" parent="VBoxContainer/CenterContainer"]
 margin_left = 281.0
 margin_right = 742.0
-margin_bottom = 196.0
+margin_bottom = 248.0
 custom_constants/vseparation = 8
 custom_constants/hseparation = 16
 columns = 2
@@ -103,19 +103,43 @@ rect_min_size = Vector2( 320, 0 )
 text = "32032"
 align = 1
 
-[node name="HostButton" type="Button" parent="VBoxContainer/CenterContainer/GridContainer"]
-margin_top = 156.0
+[node name="MaxPlayersLabel" type="Label" parent="VBoxContainer/CenterContainer/GridContainer"]
+margin_top = 161.0
 margin_right = 125.0
-margin_bottom = 196.0
+margin_bottom = 195.0
+text = "Max Players"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MaxPlayersTextbox" type="LineEdit" parent="VBoxContainer/CenterContainer/GridContainer"]
+margin_left = 141.0
+margin_top = 156.0
+margin_right = 461.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 320, 0 )
+text = "2"
+align = 1
+placeholder_text = "Max Player Count"
+
+[node name="HostButton" type="Button" parent="VBoxContainer/CenterContainer/GridContainer"]
+margin_top = 208.0
+margin_right = 125.0
+margin_bottom = 248.0
 text = "Host Game"
 
 [node name="JoinButton" type="Button" parent="VBoxContainer/CenterContainer/GridContainer"]
 margin_left = 141.0
-margin_top = 156.0
+margin_top = 208.0
 margin_right = 461.0
-margin_bottom = 196.0
+margin_bottom = 248.0
 text = "Join Game"
 
 [node name="WaitingRoom" parent="." instance=ExtResource( 2 )]
+[connection signal="text_entered" from="VBoxContainer/CenterContainer/GridContainer/NameTextbox" to="." method="_on_NameTextbox_text_entered"]
+[connection signal="text_entered" from="VBoxContainer/CenterContainer/GridContainer/IPTextbox" to="." method="_on_IPTextbox_text_entered"]
+[connection signal="text_entered" from="VBoxContainer/CenterContainer/GridContainer/PortTextbox" to="." method="_on_PortTextbox_text_entered"]
+[connection signal="text_entered" from="VBoxContainer/CenterContainer/GridContainer/MaxPlayersTextbox" to="." method="_on_NameTextbox_text_entered"]
 [connection signal="pressed" from="VBoxContainer/CenterContainer/GridContainer/HostButton" to="." method="_on_HostButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/CenterContainer/GridContainer/JoinButton" to="." method="_on_JoinButton_pressed"]
