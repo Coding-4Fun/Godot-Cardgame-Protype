@@ -1,7 +1,7 @@
 extends Node
 
 var config_data = {}
-const GAMECONFIGFILE = "user://config.json"
+const GAMECONFIGFILE = "res://config.json"
 const CONFIGDATA_DEFAULT = {
 	"Player_name": "Unnamed",
 	"Network": {
@@ -21,14 +21,15 @@ const CONFIGDATA_DEFAULT = {
 #signal hostport_changed(string)
 #signal maxplayers_changed(string)
 
+onready var lobby = get_node("/root/Lobby")
 
 func _ready() -> void:
 	config_data = get_configdata()
 
-	connect("playername_change", self, "_on_playername_change")
-	connect("hostip_changed", self, "_on_hostip_change")
-	connect("hostport_changed", self, "_on_hostport_change")
-	connect("maxplayers_changed", self, "_on_maxplayer_change")
+	lobby.connect("playername_changed", self, "_on_playername_change")
+	lobby.connect("hostip_changed", self, "_on_hostip_change")
+	lobby.connect("hostport_changed", self, "_on_hostport_change")
+	lobby.connect("maxplayers_changed", self, "_on_maxplayer_change")
 
 
 func get_configdata() -> JSONParseResult:
@@ -67,9 +68,9 @@ func _on_hostip_change(newhostip:String) -> void:
 		print("Bitte IP Adresse eingeben")
 
 
-func _on_hostport_change(newhostport:String) -> void:
-	if not newhostport.empty():
-		Config.config_data["Network"]["HostGamePort"] = int(newhostport)
+func _on_hostport_change(newhostport: int) -> void:
+	if newhostport > 0:
+		Config.config_data["Network"]["HostGamePort"] = newhostport
 		Config.save_gameconfig()
 	else:
 		print("Bitte Port eingeben")
