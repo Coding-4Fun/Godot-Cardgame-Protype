@@ -62,7 +62,7 @@ const MAX_PLAYERS = 2
 # exported variables
 #-------------------------------------------------------------------------------
 # private variables
-var local_player_id : int = 0
+var local_player_id : int = 0 setget set_local_player_id
 #-------------------------------------------------------------------------------
 # onready variables
 #onready var myVar: string
@@ -70,25 +70,26 @@ var local_player_id : int = 0
 # optional built-in virtual _init method
 #-------------------------------------------------------------------------------
 # built-in virtual _ready method
+func _ready() -> void:
+	var err = {}
+	err["disconnected"] = get_tree().connect("network_peer_disconnected", self, "_on_player_disconnected") > 0
+	err["connected"] = get_tree().connect("network_peer_connected", self, "_on_player_connected") > 0
+
+	if not err.values().empty():
+		for e in err.values():
+			print(str(e))
 #-------------------------------------------------------------------------------
 # remaining built-in virtual methods
-func _ready() -> void:
-	get_tree().connect("network_peer_disconnected", self, "_on_player_disconnected")
-	get_tree().connect("network_peer_connected", self, "_on_player_connected")
-
 #-------------------------------------------------------------------------------
 # public methods
 func create_server() -> void:
 	var peer = NetworkedMultiplayerENet.new()
 	peer.create_server(DEFAULT_PORT, MAX_PLAYERS)
 	get_tree().set_network_peer(peer)
-	set_local_player_id()
+	set_local_player_id(get_tree().get_network_unique_id())
 	print("Server wurde erstellt")
 	print("I am " + str(local_player_id))
 
-
-func set_local_player_id() -> void :
-	local_player_id = get_tree().get_network_unique_id()
 
 
 func connect_to_server() -> void:
@@ -96,7 +97,7 @@ func connect_to_server() -> void:
 	get_tree().connect("connected_to_server", self, "_connected_to_server")
 	peer.create_client(DEFAULT_IP, DEFAULT_PORT)
 	get_tree().set_network_peer(peer)
-	set_local_player_id()
+	set_local_player_id(get_tree().get_network_unique_id())
 #-------------------------------------------------------------------------------
 # private methods
 func _connected_to_server() -> void:
@@ -113,3 +114,8 @@ remote func _send_player_info(id: int) -> void:
 	if get_tree().is_network_server ():
 		print(str(id) + " ID ist jetzt verbunden")
 
+
+#-------------------------------------------------------------------------------
+# Getter und Setter
+func set_local_player_id(id: int) -> void :
+	local_player_id = id
