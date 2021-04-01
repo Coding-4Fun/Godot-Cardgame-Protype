@@ -152,16 +152,21 @@ margin_bottom = 248.0
 hint_tooltip = "Einem bestehenden Spiel beitreten"
 text = "Join Game"
 
-[node name="VSeparator" type="HSeparator" parent="VBoxContainer"]
+[node name="NetworkStatusLabel" type="Label" parent="VBoxContainer"]
 margin_top = 290.0
 margin_right = 1024.0
-margin_bottom = 365.0
+margin_bottom = 324.0
+
+[node name="VSeparator" type="HSeparator" parent="VBoxContainer"]
+margin_top = 328.0
+margin_right = 1024.0
+margin_bottom = 403.0
 rect_min_size = Vector2( 0, 75 )
 
 [node name="CenterContainer-2" type="CenterContainer" parent="VBoxContainer"]
-margin_top = 369.0
+margin_top = 407.0
 margin_right = 1024.0
-margin_bottom = 409.0
+margin_bottom = 447.0
 
 [node name="Button" type="Button" parent="VBoxContainer/CenterContainer-2"]
 margin_left = 460.0
