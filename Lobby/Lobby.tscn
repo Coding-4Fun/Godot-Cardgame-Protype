@@ -54,22 +54,26 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GridContainer" type="GridContainer" parent="VBoxContainer/CenterContainer"]
-margin_left = 281.0
-margin_right = 742.0
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/CenterContainer"]
+margin_left = 154.0
+margin_right = 869.0
+margin_bottom = 248.0
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/CenterContainer/HBoxContainer"]
+margin_right = 461.0
 margin_bottom = 248.0
 custom_constants/vseparation = 8
 custom_constants/hseparation = 16
 columns = 2
 
-[node name="NameLabel" type="Label" parent="VBoxContainer/CenterContainer/GridContainer"]
+[node name="NameLabel" type="Label" parent="VBoxContainer/CenterContainer/HBoxContainer/GridContainer"]
 margin_top = 5.0
 margin_right = 125.0
 margin_bottom = 39.0
 text = "Name"
 align = 2
 
-[node name="NameTextbox" type="LineEdit" parent="VBoxContainer/CenterContainer/GridContainer"]
+[node name="NameTextbox" type="LineEdit" parent="VBoxContainer/CenterContainer/HBoxContainer/GridContainer"]
 margin_left = 141.0
 margin_right = 461.0
 margin_bottom = 44.0
@@ -80,14 +84,14 @@ align = 1
 placeholder_text = "Select Your Name"
 placeholder_alpha = 0.492
 
-[node name="IPLabel" type="Label" parent="VBoxContainer/CenterContainer/GridContainer"]
+[node name="IPLabel" type="Label" parent="VBoxContainer/CenterContainer/HBoxContainer/GridContainer"]
 margin_top = 57.0
 margin_right = 125.0
 margin_bottom = 91.0
 text = "IP"
 align = 2
 
-[node name="IPTextbox" type="LineEdit" parent="VBoxContainer/CenterContainer/GridContainer"]
+[node name="IPTextbox" type="LineEdit" parent="VBoxContainer/CenterContainer/HBoxContainer/GridContainer"]
 margin_left = 141.0
 margin_top = 52.0
 margin_right = 461.0
@@ -98,14 +102,14 @@ text = "127.0.0.1"
 align = 1
 placeholder_text = "Host Ip Adress "
 
-[node name="PortLabel" type="Label" parent="VBoxContainer/CenterContainer/GridContainer"]
+[node name="PortLabel" type="Label" parent="VBoxContainer/CenterContainer/HBoxContainer/GridContainer"]
 margin_top = 109.0
 margin_right = 125.0
 margin_bottom = 143.0
 text = "Port"
 align = 2
 
-[node name="PortTextbox" type="LineEdit" parent="VBoxContainer/CenterContainer/GridContainer"]
+[node name="PortTextbox" type="LineEdit" parent="VBoxContainer/CenterContainer/HBoxContainer/GridContainer"]
 margin_left = 141.0
 margin_top = 104.0
 margin_right = 461.0
@@ -116,7 +120,7 @@ text = "32032"
 align = 1
 placeholder_text = "Server Game Port"
 
-[node name="MaxPlayersLabel" type="Label" parent="VBoxContainer/CenterContainer/GridContainer"]
+[node name="MaxPlayersLabel" type="Label" parent="VBoxContainer/CenterContainer/HBoxContainer/GridContainer"]
 margin_top = 161.0
 margin_right = 125.0
 margin_bottom = 195.0
@@ -126,7 +130,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MaxPlayersTextbox" type="LineEdit" parent="VBoxContainer/CenterContainer/GridContainer"]
+[node name="MaxPlayersTextbox" type="LineEdit" parent="VBoxContainer/CenterContainer/HBoxContainer/GridContainer"]
 margin_left = 141.0
 margin_top = 156.0
 margin_right = 461.0
@@ -137,20 +141,35 @@ text = "2"
 align = 1
 placeholder_text = "Max Player Count"
 
-[node name="HostButton" type="Button" parent="VBoxContainer/CenterContainer/GridContainer"]
+[node name="HostButton" type="Button" parent="VBoxContainer/CenterContainer/HBoxContainer/GridContainer"]
 margin_top = 208.0
 margin_right = 125.0
 margin_bottom = 248.0
 hint_tooltip = "Ein Spiel erstellen und auf weitere Spieler warten"
 text = "Host Game"
 
-[node name="JoinButton" type="Button" parent="VBoxContainer/CenterContainer/GridContainer"]
+[node name="JoinButton" type="Button" parent="VBoxContainer/CenterContainer/HBoxContainer/GridContainer"]
 margin_left = 141.0
 margin_top = 208.0
 margin_right = 461.0
 margin_bottom = 248.0
 hint_tooltip = "Einem bestehenden Spiel beitreten"
 text = "Join Game"
+
+[node name="ClientList" type="ItemList" parent="VBoxContainer/CenterContainer/HBoxContainer"]
+margin_left = 465.0
+margin_right = 715.0
+margin_bottom = 248.0
+rect_min_size = Vector2( 250, 41 )
+custom_constants/vseparation = 0
+custom_constants/line_separation = 0
+custom_constants/icon_margin = 10
+custom_constants/hseparation = 0
+auto_height = true
+fixed_icon_size = Vector2( 16, 16 )
+__meta__ = {
+"_editor_description_": ""
+}
 
 [node name="NetworkStatusLabel" type="Label" parent="VBoxContainer"]
 margin_top = 290.0
@@ -175,9 +194,9 @@ margin_bottom = 40.0
 text = "Hauptmenü"
 
 [node name="WaitingRoom" parent="." instance=ExtResource( 2 )]
-[connection signal="text_entered" from="VBoxContainer/CenterContainer/GridContainer/NameTextbox" to="." method="_on_NameTextbox_text_entered"]
-[connection signal="text_entered" from="VBoxContainer/CenterContainer/GridContainer/IPTextbox" to="." method="_on_IPTextbox_text_entered"]
-[connection signal="text_entered" from="VBoxContainer/CenterContainer/GridContainer/PortTextbox" to="." method="_on_PortTextbox_text_entered"]
-[connection signal="text_entered" from="VBoxContainer/CenterContainer/GridContainer/MaxPlayersTextbox" to="." method="_on_MaxPlayersTextbox_text_entered"]
-[connection signal="pressed" from="VBoxContainer/CenterContainer/GridContainer/HostButton" to="." method="_on_HostButton_pressed"]
-[connection signal="pressed" from="VBoxContainer/CenterContainer/GridContainer/JoinButton" to="." method="_on_JoinButton_pressed"]
+[connection signal="text_entered" from="VBoxContainer/CenterContainer/HBoxContainer/GridContainer/NameTextbox" to="." method="_on_NameTextbox_text_entered"]
+[connection signal="text_entered" from="VBoxContainer/CenterContainer/HBoxContainer/GridContainer/IPTextbox" to="." method="_on_IPTextbox_text_entered"]
+[connection signal="text_entered" from="VBoxContainer/CenterContainer/HBoxContainer/GridContainer/PortTextbox" to="." method="_on_PortTextbox_text_entered"]
+[connection signal="text_entered" from="VBoxContainer/CenterContainer/HBoxContainer/GridContainer/MaxPlayersTextbox" to="." method="_on_MaxPlayersTextbox_text_entered"]
+[connection signal="pressed" from="VBoxContainer/CenterContainer/HBoxContainer/GridContainer/HostButton" to="." method="_on_HostButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/CenterContainer/HBoxContainer/GridContainer/JoinButton" to="." method="_on_JoinButton_pressed"]
