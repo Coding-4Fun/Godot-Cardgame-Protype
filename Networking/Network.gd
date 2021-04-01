@@ -52,6 +52,7 @@ extends Node
 #signal player_disconnected
 #signal server_disconnected
 signal networkstatus_changed
+signal clientlist_changed
 #-------------------------------------------------------------------------------
 # enums
 #-------------------------------------------------------------------------------
@@ -163,8 +164,14 @@ remote func _send_player_info(playerinfo: Dictionary) -> void:
 	if get_tree().is_network_server ():
 		peer_info_list[id] = playerinfo
 		print(str(id) + " ID / " + playername + " ist jetzt verbunden (SERVER)")
+		rpc("_player_list_receive", peer_info_list)
 	else:
 		print(str(id) + " ID / " + playername + " ist jetzt verbunden  (CLIENT)")
+
+
+remotesync func _player_list_receive(playerlist:Dictionary) -> void:
+	if 1 == get_tree().get_rpc_sender_id():
+		emit_signal("clientlist_changed", playerlist)
 #-------------------------------------------------------------------------------
 # Getter und Setter
 #-------------------------------------------------------------------------------
