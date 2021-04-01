@@ -25,11 +25,17 @@ anchor_bottom = 1.0
 margin_left = -1024.0
 margin_top = -600.0
 color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 16.0
+margin_left = 2.11902
+margin_top = 14.9406
+margin_right = 2.11902
+margin_bottom = -1.05945
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -68,6 +74,7 @@ margin_left = 141.0
 margin_right = 461.0
 margin_bottom = 44.0
 rect_min_size = Vector2( 320, 0 )
+hint_tooltip = "Spielernamen festlegen"
 text = "Player"
 align = 1
 placeholder_text = "Select Your Name"
@@ -86,6 +93,7 @@ margin_top = 52.0
 margin_right = 461.0
 margin_bottom = 96.0
 rect_min_size = Vector2( 320, 0 )
+hint_tooltip = "Die IP Adresse des Spielerhost zu der verbunden werden soll"
 text = "127.0.0.1"
 align = 1
 placeholder_text = "Host Ip Adress "
@@ -103,6 +111,7 @@ margin_top = 104.0
 margin_right = 461.0
 margin_bottom = 148.0
 rect_min_size = Vector2( 320, 0 )
+hint_tooltip = "Der Port an dem der Host sein Spiel eröffnet hat"
 text = "32032"
 align = 1
 placeholder_text = "Server Game Port"
@@ -123,6 +132,7 @@ margin_top = 156.0
 margin_right = 461.0
 margin_bottom = 200.0
 rect_min_size = Vector2( 320, 0 )
+hint_tooltip = "Die Anzahl der Spieler die sich gleichzeitig verbinden können"
 text = "2"
 align = 1
 placeholder_text = "Max Player Count"
@@ -131,6 +141,7 @@ placeholder_text = "Max Player Count"
 margin_top = 208.0
 margin_right = 125.0
 margin_bottom = 248.0
+hint_tooltip = "Ein Spiel erstellen und auf weitere Spieler warten"
 text = "Host Game"
 
 [node name="JoinButton" type="Button" parent="VBoxContainer/CenterContainer/GridContainer"]
@@ -138,7 +149,25 @@ margin_left = 141.0
 margin_top = 208.0
 margin_right = 461.0
 margin_bottom = 248.0
+hint_tooltip = "Einem bestehenden Spiel beitreten"
 text = "Join Game"
+
+[node name="VSeparator" type="HSeparator" parent="VBoxContainer"]
+margin_top = 290.0
+margin_right = 1024.0
+margin_bottom = 365.0
+rect_min_size = Vector2( 0, 75 )
+
+[node name="CenterContainer-2" type="CenterContainer" parent="VBoxContainer"]
+margin_top = 369.0
+margin_right = 1024.0
+margin_bottom = 409.0
+
+[node name="Button" type="Button" parent="VBoxContainer/CenterContainer-2"]
+margin_left = 460.0
+margin_right = 564.0
+margin_bottom = 40.0
+text = "Hauptmenü"
 
 [node name="WaitingRoom" parent="." instance=ExtResource( 2 )]
 [connection signal="text_entered" from="VBoxContainer/CenterContainer/GridContainer/NameTextbox" to="." method="_on_NameTextbox_text_entered"]
