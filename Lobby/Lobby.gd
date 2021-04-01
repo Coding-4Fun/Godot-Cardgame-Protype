@@ -1,10 +1,11 @@
 extends Control
 
-onready var UI_NameBox:LineEdit = $VBoxContainer/CenterContainer/GridContainer/NameTextbox
-onready var UI_HostIPBox:LineEdit = $VBoxContainer/CenterContainer/GridContainer/IPTextbox
-onready var UI_HostPortBox:LineEdit = $VBoxContainer/CenterContainer/GridContainer/PortTextbox
-onready var UI_MayPlayerBox:LineEdit = $VBoxContainer/CenterContainer/GridContainer/MaxPlayersTextbox
+onready var UI_NameBox:LineEdit = $VBoxContainer/CenterContainer/HBoxContainer/GridContainer/NameTextbox
+onready var UI_HostIPBox:LineEdit = $VBoxContainer/CenterContainer/HBoxContainer/GridContainer/IPTextbox
+onready var UI_HostPortBox:LineEdit = $VBoxContainer/CenterContainer/HBoxContainer/GridContainer/PortTextbox
+onready var UI_MayPlayerBox:LineEdit = $VBoxContainer/CenterContainer/HBoxContainer/GridContainer/MaxPlayersTextbox
 onready var UI_NetworkStatusLabel:Label = $VBoxContainer/NetworkStatusLabel
+onready var UI_ClientList:ItemList = $VBoxContainer/CenterContainer/HBoxContainer/ClientList
 
 signal playername_changed
 signal hostip_changed
@@ -19,6 +20,8 @@ func _ready() -> void:
 	UI_MayPlayerBox.text = str(Config.config_data["Network"]["MaxPlayers"])
 
 	Network.connect("networkstatus_changed", self, "_on_NetworkStatusChanged")
+	Network.connect("clientlist_changed", self, "_on_ClientListChanged")
+
 
 
 func _on_HostButton_pressed() -> void:
@@ -47,3 +50,10 @@ func _on_MaxPlayersTextbox_text_entered(new_text: String) -> void:
 
 func _on_NetworkStatusChanged(message: String) -> void:
 	UI_NetworkStatusLabel.text = message
+
+
+func _on_ClientListChanged(peerlist: Dictionary) -> void:
+	UI_ClientList.clear()
+
+	for p in peerlist:
+		UI_ClientList.add_item(peerlist[p].get("name"))
