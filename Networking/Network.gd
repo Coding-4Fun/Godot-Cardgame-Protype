@@ -63,6 +63,12 @@ const MAX_PLAYERS = 2
 #-------------------------------------------------------------------------------
 # private variables
 var local_player_id : int = 0 setget set_local_player_id
+var local_player_info = {name = "", mycolor = Color8(255, 0, 255)}
+
+var peer_info_list = {}
+
+var local_client : NetworkedMultiplayerPeer
+var local_server : NetworkedMultiplayerPeer
 #-------------------------------------------------------------------------------
 # onready variables
 #onready var myVar: string
@@ -84,39 +90,74 @@ func _ready() -> void:
 #-------------------------------------------------------------------------------
 # public methods
 func create_server() -> void:
-	var peer = NetworkedMultiplayerENet.new()
-	peer.create_server(DEFAULT_PORT, MAX_PLAYERS)
-	get_tree().set_network_peer(peer)
+	local_server = NetworkedMultiplayerENet.new()
+	local_server.create_server(DEFAULT_PORT, MAX_PLAYERS)
+	get_tree().set_network_peer(local_server)
 	set_local_player_id(get_tree().get_network_unique_id())
 	print("Server wurde erstellt")
 	print("I am " + str(local_player_id))
 
-
+# Client Methode um eine Verbundung zu einem Server herzustellen
 func connect_to_server() -> void:
-	var peer = NetworkedMultiplayerENet.new()
+	local_client = NetworkedMultiplayerENet.new()
 	var err = {}
-	err["playerdisconnected"] = get_tree().connect("connected_to_server", self, "_connected_to_server") > 0
+
+	err["playerdisconnected"] = get_tree().connect("connected_to_server", self, "_on_connected_to_server") > 0
+	err["playerconnectionfailed"] = get_tree().connect("connection_failed", self, "_on_connection_failed") > 0
+	get_tree().connect("server_disconnected", self, "_on_server_disconnected")
+
 	if not err.values().empty():
 		for e in err.values():
 			print(str(e))
-	peer.create_client(DEFAULT_IP, DEFAULT_PORT)
-	get_tree().set_network_peer(peer)
+
+	local_client.create_client(DEFAULT_IP, DEFAULT_PORT)
+	get_tree().set_network_peer(local_client)
 	set_local_player_id(get_tree().get_network_unique_id())
 #-------------------------------------------------------------------------------
 # private methods
-func _connected_to_server() -> void:
-	rpc("_send_player_info", local_player_id)
+#-------------------------------------------------------------------------------
+# Netzwerk Signals und Methoden
+#-------------------------------------------------------------------------------
+# Client Signal
+#-------------------------------------------------------------------------------
+# Es wurde erfolgreich eine Verbindung zum Server hergestellt
+func _on_connected_to_server() -> void:
+	rpc_id(1, "_send_player_info", local_player_id, Config.config_data["Player_name"])
 
 
+func _on_server_disconnected() -> void:
+	print("Der Server hat die Verbindung getrennt")
+
+
+func _on_connection_failed() -> void:
+	print("Es konnte keine Verbindung zum Server hergestellt werden")
+#-------------------------------------------------------------------------------
+# Server Signals
+#-------------------------------------------------------------------------------
+# Ein Client hat eine Verbindung hergestellt
 func _on_player_connected(id:int) -> void:
 	if not get_tree().is_network_server ():
 		print(str(id) + " hat sich verbunden")
+
+
+# Ein Client hat die Verbindung getrennt
+func _on_player_disconnected(id:int) -> void:
+	print("Client mit der ID "+ str(id) + "hat die Verbindung getrennt")
 #-------------------------------------------------------------------------------
 # remote RPC methods
-remote func _send_player_info(id: int) -> void:
+#-------------------------------------------------------------------------------
+#remote func _send_player_info(id: int, playername:String) -> void:
+remote func _send_player_info(playerinfo: Dictionary) -> void:
+	var id = get_tree().get_rpc_sender_id()
+	var playername = playerinfo.get("name")
+
 	if get_tree().is_network_server ():
-		print(str(id) + " ID ist jetzt verbunden")
+		peer_info_list[id] = playerinfo
+		print(str(id) + " ID / " + playername + " ist jetzt verbunden (SERVER)")
+	else:
+		print(str(id) + " ID / " + playername + " ist jetzt verbunden  (CLIENT)")
 #-------------------------------------------------------------------------------
 # Getter und Setter
+#-------------------------------------------------------------------------------
 func set_local_player_id(id: int) -> void :
 	local_player_id = id
