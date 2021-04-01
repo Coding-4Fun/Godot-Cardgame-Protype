@@ -51,6 +51,7 @@ extends Node
 # Signals
 #signal player_disconnected
 #signal server_disconnected
+signal networkstatus_changed
 #-------------------------------------------------------------------------------
 # enums
 #-------------------------------------------------------------------------------
@@ -63,7 +64,7 @@ const MAX_PLAYERS = 2
 #-------------------------------------------------------------------------------
 # private variables
 var local_player_id : int = 0 setget set_local_player_id
-var local_player_info = {name = "", mycolor = Color8(255, 0, 255)}
+var local_player_info = {name = "Local Dummy", mycolor = Color8(255, 0, 255)}
 
 var peer_info_list = {}
 
@@ -113,6 +114,8 @@ func connect_to_server() -> void:
 	local_client.create_client(DEFAULT_IP, DEFAULT_PORT)
 	get_tree().set_network_peer(local_client)
 	set_local_player_id(get_tree().get_network_unique_id())
+
+	emit_signal("networkstatus_changed", "Verbindung zu Server wird hergestellt ...")
 #-------------------------------------------------------------------------------
 # private methods
 #-------------------------------------------------------------------------------
@@ -122,15 +125,19 @@ func connect_to_server() -> void:
 #-------------------------------------------------------------------------------
 # Es wurde erfolgreich eine Verbindung zum Server hergestellt
 func _on_connected_to_server() -> void:
-	rpc_id(1, "_send_player_info", local_player_id, Config.config_data["Player_name"])
+	rpc_id(1, "_send_player_info", local_player_info)
+	emit_signal("networkstatus_changed", "Verbindung zum Server hergestellt ...")
 
 
 func _on_server_disconnected() -> void:
 	print("Der Server hat die Verbindung getrennt")
+	emit_signal("networkstatus_changed", "Der Server hat die Verbindung getrennt")
 
 
 func _on_connection_failed() -> void:
 	print("Es konnte keine Verbindung zum Server hergestellt werden")
+	emit_signal("networkstatus_changed", "Es konnte keine Verbindung zum Server hergestellt werden")
+	# TODO: Netzwerk und signals zurück setzen
 #-------------------------------------------------------------------------------
 # Server Signals
 #-------------------------------------------------------------------------------
@@ -143,11 +150,13 @@ func _on_player_connected(id:int) -> void:
 # Ein Client hat die Verbindung getrennt
 func _on_player_disconnected(id:int) -> void:
 	print("Client mit der ID "+ str(id) + "hat die Verbindung getrennt")
+	emit_signal("networkstatus_changed", "Ein Client ist nicht mehr verbunden")
 #-------------------------------------------------------------------------------
 # remote RPC methods
 #-------------------------------------------------------------------------------
 #remote func _send_player_info(id: int, playername:String) -> void:
 remote func _send_player_info(playerinfo: Dictionary) -> void:
+	emit_signal("networkstatus_changed", "Client hat seine Info gesendet")
 	var id = get_tree().get_rpc_sender_id()
 	var playername = playerinfo.get("name")
 

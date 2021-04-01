@@ -4,15 +4,12 @@ onready var UI_NameBox:LineEdit = $VBoxContainer/CenterContainer/GridContainer/N
 onready var UI_HostIPBox:LineEdit = $VBoxContainer/CenterContainer/GridContainer/IPTextbox
 onready var UI_HostPortBox:LineEdit = $VBoxContainer/CenterContainer/GridContainer/PortTextbox
 onready var UI_MayPlayerBox:LineEdit = $VBoxContainer/CenterContainer/GridContainer/MaxPlayersTextbox
+onready var UI_NetworkStatusLabel:Label = $VBoxContainer/NetworkStatusLabel
 
 signal playername_changed
-#(newname)
 signal hostip_changed
-#(newip)
 signal hostport_changed
-#(newport)
 signal maxplayers_changed
-#(newplayer)
 
 
 func _ready() -> void:
@@ -20,6 +17,8 @@ func _ready() -> void:
 	UI_HostIPBox.text = Config.config_data["Network"]["HostIPAdress"]
 	UI_HostPortBox.text = str(Config.config_data["Network"]["HostGamePort"])
 	UI_MayPlayerBox.text = str(Config.config_data["Network"]["MaxPlayers"])
+
+	Network.connect("networkstatus_changed", self, "_on_NetworkStatusChanged")
 
 
 func _on_HostButton_pressed() -> void:
@@ -44,3 +43,7 @@ func _on_PortTextbox_text_entered(new_text: String) -> void:
 
 func _on_MaxPlayersTextbox_text_entered(new_text: String) -> void:
 	emit_signal("maxplayers_changed", int(new_text))
+
+
+func _on_NetworkStatusChanged(message: String) -> void:
+	UI_NetworkStatusLabel.text = message
