@@ -1,3 +1,5 @@
 Key,de,en
 STR_HELLO_WORLD,Hallo Welt,Hello World
 STR_HELLO_GODOT,Hallo Godot Entwickler,Hello Godot Developer
+STR_TXT_NAME,Name,name
+BUTT_TXT_CHANGE_LANG,Sprache wechseln,change language
