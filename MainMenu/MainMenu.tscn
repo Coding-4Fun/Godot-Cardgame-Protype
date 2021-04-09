@@ -69,8 +69,9 @@ margin_right = 274.0
 margin_bottom = 80.0
 placeholder_text = "STR_TXT_NAME"
 
-[node name="Button" type="OptionButton" parent="CenterContainer/GridContainer"]
+[node name="OptButtonLangSelect" type="OptionButton" parent="CenterContainer/GridContainer"]
 margin_top = 84.0
 margin_right = 196.0
 margin_bottom = 104.0
 text = "BUTT_TXT_CHANGE_LANG"
+[connection signal="item_selected" from="CenterContainer/GridContainer/OptButtonLangSelect" to="." method="_on_OptButtonLangSelect_item_selected"]
