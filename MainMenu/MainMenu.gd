@@ -49,6 +49,7 @@ extends Control
 # Eine Vorlage für neue Scripte
 #-------------------------------------------------------------------------------
 # Signals
+#signal SelectionChanged
 #-------------------------------------------------------------------------------
 # enums
 #-------------------------------------------------------------------------------
@@ -63,6 +64,10 @@ export var TrueFalse = true setget set_truefalse
 #-------------------------------------------------------------------------------
 # onready variables
 #onready var myVar: string
+onready var languages = []
+onready var UI_LangBoxSelect = $CenterContainer/GridContainer/OptButtonLangSelect
+onready var TRServer = TranslationServer
+
 #-------------------------------------------------------------------------------
 # optional built-in virtual _init method
 #-------------------------------------------------------------------------------
@@ -70,18 +75,28 @@ export var TrueFalse = true setget set_truefalse
 #-------------------------------------------------------------------------------
 # remaining built-in virtual methods
 func _ready() -> void:
+	languages = TranslationServer.get_loaded_locales ( )
+	for lang in languages:
+		UI_LangBoxSelect.add_item(TranslationServer.get_locale_name(lang))
+		TRServer.set_locale("de")
+		var currlang = TranslationServer.get_locale()
+		if languages.has(currlang):
+			UI_LangBoxSelect.selected = languages.find(currlang)
+
+
+#		UI_LangBoxSelect.connect("item_selected", self, "_on_SelectionChanged")
 	pass
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	pass
 
 
-func _unhandled_input(event: InputEvent) -> void:
+func _unhandled_input(_event: InputEvent) -> void:
 	pass
 
 
@@ -89,15 +104,24 @@ func _init() -> void:
 	pass
 
 
-func _input(event: InputEvent) -> void:
+func _input(_event: InputEvent) -> void:
 	pass
 
 
 #-------------------------------------------------------------------------------
 # public methods
-func set_truefalse(newvalue: bool) -> void:
+func set_truefalse(_newvalue: bool) -> void:
+	pass
+
+func _on_SelectionChanged(_idx: int):
 	pass
 #-------------------------------------------------------------------------------
 # private methods
 #-------------------------------------------------------------------------------
 
+
+
+func _on_OptButtonLangSelect_item_selected(idx: int) -> void:
+	if idx > -1:
+#		var local  = TranslationServer.get_locale(languages[idx])
+		TranslationServer.set_locale(languages[idx])
