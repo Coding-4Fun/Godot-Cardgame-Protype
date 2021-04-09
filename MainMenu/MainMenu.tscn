@@ -18,37 +18,59 @@ __meta__ = {
 }
 
 [node name="GridContainer" type="GridContainer" parent="CenterContainer"]
-margin_left = 410.0
-margin_top = 274.0
-margin_right = 613.0
-margin_bottom = 326.0
+margin_left = 375.0
+margin_top = 248.0
+margin_right = 649.0
+margin_bottom = 352.0
 columns = 2
 
-[node name="Label" type="Label" parent="CenterContainer/GridContainer"]
+[node name="Label-1" type="Label" parent="CenterContainer/GridContainer"]
 margin_top = 5.0
-margin_right = 125.0
+margin_right = 196.0
 margin_bottom = 19.0
 text = "STR_HELLO_WORLD"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SpinBox" type="SpinBox" parent="CenterContainer/GridContainer"]
-margin_left = 129.0
-margin_right = 203.0
+[node name="SpinBox-1" type="SpinBox" parent="CenterContainer/GridContainer"]
+margin_left = 200.0
+margin_right = 274.0
 margin_bottom = 24.0
 
 [node name="Label-2" type="Label" parent="CenterContainer/GridContainer"]
 margin_top = 33.0
-margin_right = 125.0
+margin_right = 196.0
 margin_bottom = 47.0
 text = "STR_HELLO_GODOT"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LineEdit" type="LineEdit" parent="CenterContainer/GridContainer"]
-margin_left = 129.0
+[node name="LineEdit-2" type="LineEdit" parent="CenterContainer/GridContainer"]
+margin_left = 200.0
 margin_top = 28.0
-margin_right = 203.0
+margin_right = 274.0
 margin_bottom = 52.0
+
+[node name="Label-3" type="Label" parent="CenterContainer/GridContainer"]
+margin_top = 61.0
+margin_right = 196.0
+margin_bottom = 75.0
+text = "Wie lautet dein STR_TXT_NAME"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LineEdit-3" type="LineEdit" parent="CenterContainer/GridContainer"]
+margin_left = 200.0
+margin_top = 56.0
+margin_right = 274.0
+margin_bottom = 80.0
+placeholder_text = "STR_TXT_NAME"
+
+[node name="Button" type="OptionButton" parent="CenterContainer/GridContainer"]
+margin_top = 84.0
+margin_right = 196.0
+margin_bottom = 104.0
+text = "BUTT_TXT_CHANGE_LANG"
