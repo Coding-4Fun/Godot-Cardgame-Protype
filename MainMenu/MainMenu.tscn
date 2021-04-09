@@ -9,3 +9,46 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GridContainer" type="GridContainer" parent="CenterContainer"]
+margin_left = 410.0
+margin_top = 274.0
+margin_right = 613.0
+margin_bottom = 326.0
+columns = 2
+
+[node name="Label" type="Label" parent="CenterContainer/GridContainer"]
+margin_top = 5.0
+margin_right = 125.0
+margin_bottom = 19.0
+text = "STR_HELLO_WORLD"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SpinBox" type="SpinBox" parent="CenterContainer/GridContainer"]
+margin_left = 129.0
+margin_right = 203.0
+margin_bottom = 24.0
+
+[node name="Label-2" type="Label" parent="CenterContainer/GridContainer"]
+margin_top = 33.0
+margin_right = 125.0
+margin_bottom = 47.0
+text = "STR_HELLO_GODOT"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LineEdit" type="LineEdit" parent="CenterContainer/GridContainer"]
+margin_left = 129.0
+margin_top = 28.0
+margin_right = 203.0
+margin_bottom = 52.0
